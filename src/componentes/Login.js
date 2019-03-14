@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 
 export default class Login extends Component{
 
-    constructor(){
+    constructor(props){
         super();
-        this.state = {msgErro: ""}
-        
+        const params = new URLSearchParams(props.location.search);
+        this.state = {msgErro: params.get('msg')}
     }
 
     enviaForm(event){

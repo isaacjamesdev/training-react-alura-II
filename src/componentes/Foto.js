@@ -66,7 +66,7 @@ class FotoHeader extends Component {
               <figure className="foto-usuario">
                 <img src={this.props.foto.urlPerfil} alt="foto do usuario"/>
                 <figcaption className="foto-usuario">
-                  <a href={this.props.foto.loginUsuario}>
+                  <a href={"timeline/"+this.props.foto.loginUsuario}>
                     {this.props.foto.loginUsuario}
                   </a>  
                 </figcaption>
