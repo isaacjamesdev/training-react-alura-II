@@ -4,6 +4,7 @@ export default class Logout extends Component{
     
     componentWillMount(){
         localStorage.removeItem('auth-token');
+        this.props.history.push("/timeline");
     }
     
     render(){

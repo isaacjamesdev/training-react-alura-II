@@ -16,7 +16,6 @@ export default class Login extends Component{
             headers: new Headers({
                 'Content-type':'application/json'
             })
-
         }
 
         fetch('https://instalura-api.herokuapp.com/api/public/login', requestInfo)
