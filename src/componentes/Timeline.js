@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {createBrowserHistory} from 'history'
 import Foto from './Foto'; 
 
 export default class Timeline extends Component {

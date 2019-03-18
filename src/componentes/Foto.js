@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
+
 class FotoAtualizacoes extends Component {
+  constructor(props){
+    super(props);
+    this.state = {likeada: this.props.foto.likeada}
+  }
+
+  like(event){
+    event.preventDefault();
+    fetch(`https://instalura-api.herokuapp.com/api/fotos/${this.props.foto.id}/like?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`, {method: 'POST'})
+      .then(response  => {
+          if(response.ok)
+            return response.json();
+          else
+            throw new Error("Erro na fetch do like")
+      })
+      .then(response => {
+        console.log(response);
+        this.setState({likeada: !this.state.likeada})
+      })
+  }
     render(){
         return (
             <section className="fotoAtualizacoes">
-              <a href="#" className="fotoAtualizacoes-like">Likar</a>
+              <a onClick={this.like.bind(this)} className={this.state.likeada ? "fotoAtualizacoes-like-ativo" : "fotoAtualizacoes-like"}>Likar</a>
               <form className="fotoAtualizacoes-form">
                 <input type="text" placeholder="Adicione um comentário..." className="fotoAtualizacoes-form-campo"/>
                 <input type="submit" value="Comentar!" className="fotoAtualizacoes-form-submit"/>
@@ -17,15 +37,25 @@ class FotoAtualizacoes extends Component {
 }
 
 class FotoInfo extends Component {
+
+    constructor(props){
+      super(props);
+      this.state = ({likers: this.props.foto.likers});
+    }
+
+    componentWillMount(){
+      console.log(this.state.likers);
+      
+    }
+
     render(){
         return (
             <div className="foto-in fo">
               <div className="foto-info-likes">
               {
-                this.props.foto.likers.map(user => {
-                    <link to={`/timeline/${user.loginUsuario}`}> {user.loginUsuario}
-                    </link>
-                })
+                this.props.foto.likers.map(user => 
+                   <Link key={this.props.foto.id} to={`/timeline/${user.login}`}>{user.login} </Link>
+                )
               } 
               ,
                 curtiram
@@ -44,7 +74,7 @@ class FotoInfo extends Component {
                 {
                   this.props.foto.likers.map(user => {
                     <li className="comentario">
-                      <link to={`/timeline/${user.loginUsuario}`} className="foto-info-autor">{user.loginUsuario}</link>
+                      <Link to={`/timeline/${user.loginUsuario}`} className="foto-info-autor">{user.loginUsuario}</Link>
                       {user.comentario}
                     </li>
                   })
