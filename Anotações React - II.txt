@@ -2,16 +2,16 @@
 Component
 	-componentWillProps()
 -Fetch API
-	-promisses e vários then, then, catch
+	-promisses e vï¿½rios then, then, catch
 	-JWT
-	-usar isso para redirecionamento no submit: (programação programática) this.props.history.push("/timeline");
+	-usar isso para redirecionamento no submit: (programaï¿½ï¿½o programï¿½tica) this.props.history.push("/timeline");
 -Router
 	-parametro exact
 	-Route <onEnter={callback}
 	-Parametro opicional no Route. path:"timeline(/:login)"
 
 ---Para Atualizar:
-	-<route onEnter={}>, se liga nisso doidão
+	-<route onEnter={}>, se liga nisso doidï¿½o
 ---Pesquisar mais:
 	-JWT
 	-react-router-dom
@@ -20,4 +20,5 @@ Component
 	-Ciclo de vidas
 	*Coloca um atributo no 'State' somente quando eu quero ficar alterando e renderizando o valor dele
 	-proerties short rend
+	-presentationContainer e ComponentContainer
 	
